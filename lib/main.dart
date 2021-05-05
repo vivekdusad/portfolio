@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/sections/home/home.dart';
+import 'package:portfolio/sections/navbar/navBarLogo.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,30 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, primaryColor: Colors.white,),
       home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FlutterLogo(),
-            Text("Vivek Khandelwal"),
-            Text("Android Developer"),
-          ],
-        ),
-      ),
-    );
-  }
-}

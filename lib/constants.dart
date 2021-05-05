@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+TextStyle kNavBarTextStyle = GoogleFonts.ubuntu(
+  fontWeight: FontWeight.bold,
+  letterSpacing: 1.5,
+  fontSize: 18,
+  decoration: TextDecoration.underline,
+);
 const kTextColor = Color(0xFF707070);
 const kTextLightColor = Color(0xFF555555);
 
