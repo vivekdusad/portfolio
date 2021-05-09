@@ -10,11 +10,18 @@ class SideBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         _socialLinks(
-            FaIcon(FontAwesomeIcons.facebook), "https://www.google.com/"),
-        _socialLinks(
             FaIcon(FontAwesomeIcons.github), "https://www.google.com/"),
         _socialLinks(
             FaIcon(FontAwesomeIcons.twitter), "https://www.google.com/"),
+        _socialLinks(
+            FaIcon(FontAwesomeIcons.linkedinIn), "https://www.google.com/"),
+        _socialLinks(
+            FaIcon(FontAwesomeIcons.mailBulk), "https://www.google.com/"),
+        Container(
+          height: 100,
+          width: 2,
+          color: Colors.grey,
+        )
       ],
     );
   }

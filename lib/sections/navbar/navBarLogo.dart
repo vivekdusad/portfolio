@@ -2,71 +2,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio/constants.dart';
-import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:portfolio/sections/about/about.dart';
+import 'package:portfolio/sections/portfolio/portfolio.dart';
+import 'package:portfolio/widgets/navbar.dart';
 import 'package:portfolio/widgets/sidebar.dart';
 
 class NabBar extends StatelessWidget {
+  ScrollController scrollController = ScrollController();
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _leadingPart(context),
-          _homeBody(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [_trailingPart()],
-          )
-        ],
-      ),
-    );
+  Widget build(BuildContext context) {    
+    return NavbarWidet();
   }
 
-  _leadingPart(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        GlowText("Vivek",
-            style: GoogleFonts.ubuntu(
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.5,
-              fontSize: 25,
-            )),
-        SideBar(),
-      ],
-    );
-  }
-
-  _trailingPart() {
+  LayoutBuilder NavbarWidet() {
     return LayoutBuilder(builder: (context, he) {
       var width = MediaQuery.of(context).size.width;
       if (width > 760) {
         return Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text("Home", style: kNavBarTextStyle),
-            SizedBox(
-              width: 20,
-            ),
-            Text("About", style: kNavBarTextStyle),
-            SizedBox(
-              width: 20,
-            ),
-            Text("Services", style: kNavBarTextStyle),
-            SizedBox(
-              width: 20,
-            ),
-            Text("Projects", style: kNavBarTextStyle),
-            SizedBox(
-              width: 20,
-            ),
-            Text("Contact", style: kNavBarTextStyle),
-            SizedBox(
-              width: 20,
+            NavbarItem(
+                text: "Home",
+                onTap: () {
+                  scrollController.jumpTo(1);
+                }),
+            NavbarItem(text: "About", onTap: () {}),
+            NavbarItem(text: "Services", onTap: () {}),
+            NavbarItem(text: "Project", onTap: () {}),
+            OutlineButton(
+              onPressed: () {},
+              child: Text("Resume"),
+              hoverColor: Colors.red[400],
+              borderSide: BorderSide(color: Colors.red),
             ),
           ],
         );
@@ -81,27 +49,30 @@ class NabBar extends StatelessWidget {
       );
     });
   }
-}
 
-class _homeBody extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  // Future _scrollToIndex(int index) async {
+  //   await scrollController.scrollToIndex(index,
+  //       preferPosition: AutoScrollPosition.begin);
+  //   _autoScrollController.highlight(index);
+  // }
+
+  _leadingPart(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(10),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Hi", style: kHomeTextStyle),
-          Text(
-            "My Name is Vivek",
-            style: kHomeTextStyle,
-          ),
-          Text(
-            "I Love to develop Things which are Live on Internet",
-            style: GoogleFonts.roboto(color: kTextColor),
-          )
+          GlowText("VK",
+              style: GoogleFonts.ubuntu(
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
+                fontSize: 25,
+              )),
+          SideBar(),
         ],
       ),
     );
   }
 }
+
+
