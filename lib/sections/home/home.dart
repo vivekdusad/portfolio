@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:portfolio/Projects/projectsWeb.dart';
 import 'package:portfolio/sections/about/about.dart';
 import 'package:portfolio/sections/portfolio/portfolio.dart';
 import 'package:portfolio/widgets/navbar.dart';
@@ -35,14 +37,21 @@ class _MyHomePageState extends State<MyHomePage> {
     _scrollController.dispose();
   }
 
+  List<Widget> _screensList = [
+    homeBody(),
+    About(),
+    Contact(),
+    ProjectsWeb(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Stack(
           clipBehavior: Clip.antiAliasWithSaveLayer,
+          alignment: Alignment.bottomLeft,
           children: [
             CustomScrollView(
               physics:
@@ -53,12 +62,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 // You can use just SliverAppBar
                 SliverAppBar(
                   pinned: true,
-                  leading: GlowText("VK",
-                      style: GoogleFonts.ubuntu(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.5,
-                        fontSize: 25,
-                      )),
+                  leading: Padding(
+                    padding: const EdgeInsets.only(top: 10, left: 10),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    super.widget));
+                      },
+                      child: GlowText("VK",
+                          style: GoogleFonts.ubuntu(
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
+                            fontSize: 25,
+                          )),
+                    ),
+                  ),
                   actions: [
                     NavbarItem(
                         text: "Home",
@@ -76,7 +97,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           scrollTo("Contact");
                         }),
                     OutlineButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Coming Soon")));
+                      },
                       child: Text("Resume"),
                       hoverColor: Colors.red[400],
                       borderSide: BorderSide(color: Colors.red),
@@ -85,12 +109,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
 
                 SliverList(
-                  delegate: SliverChildListDelegate([
-                    homeBody(),
-                    About(),
-                    Contact(),
-                  ]),
-                )
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return _screensList[index];
+                    },
+                    childCount: _screensList.length,
+                  ),
+                ),
               ],
             ),
             SideBar(),
@@ -173,15 +198,15 @@ class homeBody extends StatelessWidget {
                     fontSize: 40,
                     fontWeight: FontWeight.bold),
               ),
-
             ],
           ),
           LayoutBuilder(builder: (context, box) {
             if (MediaQuery.of(context).size.width > 760) {
-              return Lottie.network(
-                  "https://assets6.lottiefiles.com/packages/lf20_myor1trh.json",
-                  height: 250,
-                  width: 250);
+              return Image.asset(
+                "intro.png",
+                width: 300,
+                height: 300,
+              );
             }
             return Container();
           })

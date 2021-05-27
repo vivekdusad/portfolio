@@ -8,13 +8,14 @@ class SideBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
       children: [
         _socialLinks(
-            FaIcon(FontAwesomeIcons.github), "https://www.google.com/"),
+            FaIcon(FontAwesomeIcons.github), "https://github.com/vivekdusad"),
         _socialLinks(
             FaIcon(FontAwesomeIcons.twitter), "https://www.google.com/"),
-        _socialLinks(
-            FaIcon(FontAwesomeIcons.linkedinIn), "https://www.google.com/"),
+        _socialLinks(FaIcon(FontAwesomeIcons.linkedinIn),
+            "https://www.linkedin.com/in/vivekkhandelwal55/"),
         _socialLinks(
             FaIcon(FontAwesomeIcons.mailBulk), "https://www.google.com/"),
         Container(
