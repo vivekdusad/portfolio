@@ -40,8 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _screensList = [
     homeBody(),
     About(),
-    Contact(),
     ProjectsWeb(),
+    Contact(),    
   ];
 
   @override

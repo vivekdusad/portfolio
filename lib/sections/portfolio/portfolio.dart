@@ -35,7 +35,7 @@ class Contact extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Text(
                 "Get In Touch",
